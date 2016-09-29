@@ -6,13 +6,17 @@
 			<h1>Lista de To Dos</h1>
 
 			<form action="./items">
-			    <input class="btnnovoitem" type="submit" value="Adicione novo item" />
+			    <input class="btnnovoitem" type="submit" value="Adicione novo To Do" />
 			</form>
 			
 			<table class="table-striped table-hover">
 				<table-striped>	
 					<% allitems.forEach(function(x){%>
-					<tr><td><%=  x.item;%></td></tr>
+						<tr>
+							<td id="<%=x._id%>"> <span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></td>
+							<td> <%= x.duedate;%></td>
+							<td id="todo"> <%= x.item;%></td>
+						</tr>
 					<% }); %>
 			</table>
 		</div>

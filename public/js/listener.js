@@ -14,12 +14,13 @@
 console.log("hello connected");
 //Click to delete Todo
 	$("table").on("click", "td", function(event){
-	    $(this).fadeOut(500,function(){
+	    $(this.parentElement).fadeOut(500,function(){
 		$(this).remove();
 		});
-		event.stopPropagation();	
-		console.log($(this).text());
-        $.post("/delete", {name: $(this).text()});
+		event.stopPropagation();
+		console.log(this.id);
+        //$.post("/delete", {id: $(this).text()});
+        $.post("/delete", {id: (this).id});
 	});
 
 			

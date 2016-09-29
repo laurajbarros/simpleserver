@@ -16,6 +16,7 @@ mongoose.Promise = global.Promise;
 ///// Gravar itens no BD
 var itemSchema = new mongoose.Schema({
 item: String,
+duedate: String //não sei se isso funciona
 })//	Isso aqui determina a estrutura dos dados que podem existir
 
 var Item = mongoose.model("Item",itemSchema); 
@@ -33,7 +34,7 @@ app.use(express.static(__dirname + "/controllers"))
 app.get("/",function(req,res){
 	Item.find({},function(err,allitems){
 		if(err){
-			console.log(err);
+			console.log("deuruim");
 		} else {
 		res.render("todos",{allitems:allitems});
 		}
@@ -46,11 +47,12 @@ app.get("/items",function(req,res){
 
 app.post("/additem",function(req,res){
 	console.log(req.body);
+	var dateadded = req.body.date;
     var itemadded = req.body.item;
-	var newItem = {item: itemadded}
+	var newItem = {item: itemadded, duedate:dateadded}
 	Item.create(newItem, function(err,item){
 		if(err){
-			console.log(err);
+			console.log("deu ruim");
 		} else {
 			res.redirect("/");
 		}
@@ -58,10 +60,11 @@ app.post("/additem",function(req,res){
 	});
 
 app.post("/delete",function(req,res){
-	var itemtodelete = req.body.name;
-	Item.findOneAndRemove({item:itemtodelete},function(err){
+	var itemtodelete = req.body.id;
+	console.log(itemtodelete);
+	Item.findByIdAndRemove(itemtodelete,function(err){
 		if(err){
-			console.log(err);
+			console.log("deu ruim");
 		}
 	});
 	});

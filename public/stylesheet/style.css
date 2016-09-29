@@ -2,7 +2,7 @@ body{
 	font-family:"Bree Serif", serif;
 }
 .container{
- width:30%;
+ width:50%;
  text-align: center;
  line-height: 2em;
 }
@@ -10,6 +10,7 @@ body{
 table{
 	width:100%;
 	list-style-type: none;
+	table-layout: fixed;
 }
 
 button{
@@ -38,4 +39,17 @@ input{
 	background-image: url("http://akalifehacking.com/wp-content/uploads/2014/05/MindMappingBoard.jpg");
 	height: 200px;
 	background-size:100%;
+}
+
+td{
+	word-wrap:break-word;
+}
+
+#deleteicon{
+	color:red;
+	width:10%;
+}
+
+#todo{
+	width:70%;
 }
