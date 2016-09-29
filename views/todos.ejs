@@ -1,0 +1,23 @@
+<% include ./partials/header %>
+
+<div class="container">	
+	<div class="row">
+		<div class="col-sm-12 col-lg-12">
+			<h1>Lista de To Dos</h1>
+
+			<form action="./items">
+			    <input class="btnnovoitem" type="submit" value="Adicione novo item" />
+			</form>
+			
+			<table class="table-striped table-hover">
+				<table-striped>	
+					<% allitems.forEach(function(x){%>
+					<tr><td><%=  x.item;%></td></tr>
+					<% }); %>
+			</table>
+		</div>
+	</div>
+</div>
+
+<% include ./partials/footer %>
+

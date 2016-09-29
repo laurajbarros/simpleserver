@@ -1,0 +1,41 @@
+body{
+	font-family:"Bree Serif", serif;
+}
+.container{
+ width:30%;
+ text-align: center;
+ line-height: 2em;
+}
+
+table{
+	width:100%;
+	list-style-type: none;
+}
+
+button{
+	width:100%;
+	border:none;
+}
+
+input{
+	width:69%;
+}
+
+#adicionar{
+	display: inline-block;
+	min-width: 50px;
+	width:30%;
+	margin-bottom: 1em;
+	white-space: normal;
+}
+
+.btnnovoitem{
+	width:100%;
+	border:none;
+}
+
+.jumbotron{
+	background-image: url("http://akalifehacking.com/wp-content/uploads/2014/05/MindMappingBoard.jpg");
+	height: 200px;
+	background-size:100%;
+}
