@@ -13,13 +13,23 @@
 //============================
 console.log("hello connected");
 //Click to delete Todo
-	$("table").on("click", "td", function(event){
+	// $("table").on("click", "td", function(event){
+	//     $(this.parentElement).fadeOut(500,function(){
+	// 	$(this).remove();
+	// 	});
+	// 	event.stopPropagation();
+	// 	console.log(this);
+	// 	console.log(this.id);
+ //        //$.post("/delete", {id: $(this).text()});
+ //        $.post("/delete", {id: (this).id});
+	// });
+
+		$(".deletebutton").on("click", function(event){
 	    $(this.parentElement).fadeOut(500,function(){
 		$(this).remove();
 		});
 		event.stopPropagation();
 		console.log(this.id);
-        //$.post("/delete", {id: $(this).text()});
         $.post("/delete", {id: (this).id});
 	});
 

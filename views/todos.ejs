@@ -13,7 +13,7 @@
 				<table-striped>	
 					<% allitems.forEach(function(x){%>
 						<tr>
-							<td id="<%=x._id%>"> <span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></td>
+							<td id="<%=x._id%>" class="deletebutton"> <span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></td>
 							<td> <%= x.duedate;%></td>
 							<td id="todo"> <%= x.item;%></td>
 						</tr>
@@ -22,6 +22,5 @@
 		</div>
 	</div>
 </div>
-
 <% include ./partials/footer %>
 

@@ -16,7 +16,7 @@ mongoose.Promise = global.Promise;
 ///// Gravar itens no BD
 var itemSchema = new mongoose.Schema({
 item: String,
-duedate: String //não sei se isso funciona
+duedate: {type:Date, default: Date.now} //não sei se isso funciona
 })//	Isso aqui determina a estrutura dos dados que podem existir
 
 var Item = mongoose.model("Item",itemSchema); 
@@ -64,7 +64,7 @@ app.post("/delete",function(req,res){
 	console.log(itemtodelete);
 	Item.findByIdAndRemove(itemtodelete,function(err){
 		if(err){
-			console.log("deu ruim");
+			console.log("deu ruim delete");
 		}
 	});
 	});
