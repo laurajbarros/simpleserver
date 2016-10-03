@@ -6,8 +6,19 @@
 
 		<div>
 			<form class= "form-inline" action="/additem" method="POST">
-				<input type="text" placeholder="item" name="item">
-				<input type="text" placeholder="YYYY-MM-DD" name="date">
+				<input type="text" placeholder="item" name="item" pattern="{30}" title="Seja suscinto, até 30 caracteres :)" required>
+				<aside class="widget">
+    				<p>Data limite: <input id="datepicker" placeholder="DD-MM-YYYY" type="text" name="date2"></p>
+    				<p><input id="alt-datepicker" type="hidden" name="date3"></p>
+
+				</aside>
+				<script type="text/javascript">$(document).ready(function() {
+			    	$("#datepicker").datepicker({
+			    		    altField  : '#alt-datepicker',
+    						altFormat : 'yy/mm/dd',
+    						format    : 'dd-mm-yyyy'
+			    		});		
+				});</script>
 				<button id="adicionar" id="adicionar">adicionar</button>
 			</form>
 		</div>
@@ -15,6 +26,5 @@
 			    <input class="btnnovoitem" type="submit" value="Ver lista" />
 	</div>
 </div>
- 
  
 <% include ./partials/footer %>

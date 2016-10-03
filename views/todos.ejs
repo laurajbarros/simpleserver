@@ -11,13 +11,22 @@
 			
 			<table class="table-striped table-hover">
 				<table-striped>	
+				<thead>
+					<tr>
+						<th></th>
+						<th>Data limite</th>
+						<th>To Do</th>
+					</tr>
+				</thead>
+				<tbody>
 					<% allitems.forEach(function(x){%>
 						<tr>
 							<td id="<%=x._id%>" class="deletebutton"> <span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></td>
-							<td> <%= x.duedate;%></td>
+							<td> <%= moment(x.duedate).utc().format("DD/MM/YYYY");%></td>
 							<td id="todo"> <%= x.item;%></td>
 						</tr>
 					<% }); %>
+				</tbody>
 			</table>
 		</div>
 	</div>
