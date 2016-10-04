@@ -1,5 +1,7 @@
 <% include ./partials/header %>
 
+
+
 <div class="container">	
 	<div class="row">
 		<div class="col-sm-12 col-lg-12">
@@ -8,9 +10,8 @@
 			<form action="./items">
 			    <input class="btnnovoitem" type="submit" value="Adicione novo To Do" />
 			</form>
-			
-			<table class="table-striped table-hover">
-				<table-striped>	
+			<table id="myTable" class="tablesorter table-striped table-hover" data-sortlist="[[1,0]]"> 
+			<!--<table class="table-striped table-hover tablesorter" id="mytable">-->
 				<thead>
 					<tr>
 						<th></th>
@@ -28,8 +29,10 @@
 					<% }); %>
 				</tbody>
 			</table>
+	
 		</div>
 	</div>
 </div>
+
 <% include ./partials/footer %>
 

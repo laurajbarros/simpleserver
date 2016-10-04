@@ -75,8 +75,8 @@ app.post("/delete",function(req,res){
 	});
 
 
-app.get("/datepicker",function(req,res){
-	res.render("datepicker");
+app.get("/tablesorter",function(req,res){
+	res.render("tablesorter");
 });
 
 
