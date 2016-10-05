@@ -15,7 +15,9 @@
 				<thead>
 					<tr>
 						<th></th>
+						<th>Prioridade</th>
 						<th>Data limite</th>
+						<th> Quantos dias faltam para entrega</th>
 						<th>To Do</th>
 					</tr>
 				</thead>
@@ -23,15 +25,19 @@
 					<% allitems.forEach(function(x){%>
 						<tr>
 							<td id="<%=x._id%>" class="deletebutton"> <span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></td>
+							<td> <%= x.priority;%></td>
 							<td> <%= moment(x.duedate).utc().format("DD/MM/YYYY");%></td>
+							<% moment.locale("pt-br") %>
+							<td> <%=  moment(x.duedate).utc().fromNow();%></td>
 							<td id="todo"> <%= x.item;%></td>
 						</tr>
 					<% }); %>
 				</tbody>
 			</table>
-	
+		
 		</div>
 	</div>
+	<div><a href="/calendar">Ver calendário</a></div>
 </div>
 
 <% include ./partials/footer %>

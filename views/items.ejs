@@ -6,11 +6,18 @@
 
 		<div>
 			<form class= "form-inline" action="/additem" method="POST">
-				<input type="text" placeholder="item" name="item" required>
+				<p>To do: <input type="text" placeholder="To do" name="item" required></p>
+				<p> Prioridade:
+					<select name="priority">
+	  					<option value="urgente">Urgente</option>
+	  					<option value="alta">Alta</option>
+	  					<option value="media">Média</option>
+	  					<option value="baixa" selected>Baixa</option>
+					</select>
+				</p>
 				<aside class="widget">
     				<p>Data limite: <input id="datepicker" placeholder="DD-MM-YYYY" type="text" name="date2"></p>
     				<p><input id="alt-datepicker" type="hidden" name="date3"></p>
-
 				</aside>
 				<script type="text/javascript">$(document).ready(function() {
 			    	$("#datepicker").datepicker({

@@ -17,7 +17,8 @@ mongoose.Promise = global.Promise;
 ///// Gravar itens no BD
 var itemSchema = new mongoose.Schema({
 item: String,
-duedate: {type:Date, default: Date.now} //não sei se isso funciona
+duedate: {type:Date, default: Date.now},
+priority: String,
 })//	Isso aqui determina a estrutura dos dados que podem existir
 
 var Item = mongoose.model("Item",itemSchema); 
@@ -29,6 +30,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/controllers"));
 app.locals.moment = require('moment');
+
 //============================
 // ROUTERS
 //============================
@@ -36,7 +38,7 @@ app.locals.moment = require('moment');
 app.get("/",function(req,res){
 	Item.find({},function(err,allitems){
 		if(err){
-			console.log("deuruim");
+			console.log("deuruim /");
 		} else {
 //		var duedates = (moment(allitems[0].duedate)).format();
 //		console.log(duedates);
@@ -45,16 +47,31 @@ app.get("/",function(req,res){
 	})
 	});
 
+app.get("/calendar",function(req,res){
+	Item.find({},function(err,allitems2){
+		if(err){
+			console.log("deuruim calendar");
+		} else {
+		res.render("calendar",{allitems:allitems2});
+		console.log(allitems2);
+		}
+	})
+});
+
+
 app.get("/items",function(req,res){
 	res.render("items");
 	});
 
+app.get("/modal",function(req,res){
+	res.render("modal");
+	});
+
 app.post("/additem",function(req,res){
-	console.log(req.body.date3);
-	debugger;
+	var priorityadded = (req.body.priority);
 	var dateadded = (req.body.date3) ;
     var itemadded = req.body.item;
-	var newItem = {item: itemadded, duedate:dateadded}
+	var newItem = {item: itemadded, duedate:dateadded, priority:priorityadded}
 	Item.create(newItem, function(err,item){
 		if(err){
 			console.log("deu ruim");
@@ -75,9 +92,7 @@ app.post("/delete",function(req,res){
 	});
 
 
-app.get("/tablesorter",function(req,res){
-	res.render("tablesorter");
-});
+
 
 
 //============================
