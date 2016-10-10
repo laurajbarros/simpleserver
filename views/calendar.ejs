@@ -23,55 +23,60 @@
 console.log(allitemstransf);
 
 //carregando eventos no calendar com allitemstransf
+        
+        $(document).ready(function() {
+            //Define como o calendário irá funcionar,
+           
+
+             $('#calendar').fullCalendar({
+                editable:true,
+                         header:{
+                             left: 'prev,next today',
+                             center: 'title',
+                             right: 'agendaWeek,agendaDay month',
+                         },
+                         eventClick: function(calEvent, jsEvent, view) {
+                             //abre o modal e coloca as variáveis
+                                 $("#eventInfo").html("<p>" + calEvent.title + "</p>");
+                                 $("#eventContent").dialog({ modal: true, title: "To Do"});
+                         },
+             });
+        });
         $(document).ready(function() {
             $("#calendar").fullCalendar("addEventSource",allitemstransf);
         });
-        $(document).ready(function() {
-            //Define como o calendário irá funcionar,
-            $('#calendar').fullCalendar({
-                        header:{
-                            left: 'prev,next today',
-                            center: 'title',
-                            right: 'agendaWeek,agendaDay month',
-                        },
-                        eventClick: function(calEvent, jsEvent, view) {
-                            //abre o modal e coloca as variáveis
-                                $("#eventInfo").html("<p>" + calEvent.title + "</p>");
-                                $("#eventContent").dialog({ modal: true, title: "To Do"});
-                        },
-                    });
-            });
+
+$(".title").append("<p>Calendário</p>")
 
 
 </script>
  
+
+
 <div id="eventContent" title="Event Details">
     <div id="eventInfo"></div>
 </div>
 
 
-<div><h4><a href="/">Ver todos</a></h4></div>
-<div class="container">
-   <h1>Veja quando possui to dos</h1>
-    <div id='calendar'></div>
-</div>
-
-<div id="calendarModal" class="modal fade">
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-            <h4 id="modalTitle" class="modal-title"></h4>
+    <div class="calendario">
+        <div id='calendar'></div>
         </div>
-        <div id="modalBody" class="modal-body"> </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <div id="calendarModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                            <h4 id="modalTitle" class="modal-title"></h4>
+                        </div>
+                        <div id="modalBody" class="modal-body"> </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
-
-
 
 
 

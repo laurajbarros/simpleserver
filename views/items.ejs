@@ -1,12 +1,10 @@
 <% include ./partials/header %>
 
-<div class="container">
 	<div class="bloco">
-		<h1>Adicionar item</h1>
-
+		
 		<div>
-			<form class= "form-inline" action="/additem" method="POST">
-				<p>To do: <input type="text" placeholder="To do" name="item" required></p>
+			<form class= "form" action="/additem" method="POST">
+				<p>Tarefa: <input type="text" placeholder="Exp: agendar consulta" name="item" required></p>
 				<p> Prioridade:
 					<select name="priority">
 	  					<option value="urgente">Urgente</option>
@@ -26,12 +24,12 @@
     						format    : 'dd-mm-yyyy'
 			    		});		
 				});</script>
-				<button id="adicionar" id="adicionar">adicionar</button>
+				<button id="adicionar">adicionar</button>
 			</form>
 		</div>
-				<form action="/">
-			    <input class="btnnovoitem" type="submit" value="Ver lista" />
 	</div>
-</div>
- 
+
+<script>
+$(".title").append("<p>Adicionar tarefa</p>")
+</script> 
 <% include ./partials/footer %>

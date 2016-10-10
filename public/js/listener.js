@@ -24,7 +24,7 @@ console.log("hello connected");
  //        $.post("/delete", {id: (this).id});
 	// });
 
-		$(".deletebutton").on("click", function(event){
+		$(".deleteicon").on("click", function(event){
 	    $(this.parentElement).fadeOut(500,function(){
 		$(this).remove();
 		});

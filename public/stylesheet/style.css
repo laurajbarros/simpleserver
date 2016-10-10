@@ -1,59 +1,185 @@
 body{
 	font-family:"Bree Serif", serif;
-}
-.container{
- width:50%;
- text-align: center;
- line-height: 2em;
+	background-image: url("../assets/background.jpg");
 }
 
 table{
-	width:100%;
+	width: 420px;
 	list-style-type: none;
-	table-layout: fixed;
+	margin:auto;
+	text-align: center;
 }
 
 th{
 	text-align: center;
 }
 
+tr{
+	background-color: #E6E6E6;
+	border: 5px solid #F2F2F2;
+}
+
+td:first-child{ border-top-left-radius: 15px; 
+word-break: break-all;}
+td:last-child { border-top-right-radius: 15px; }
+td:first-child { border-bottom-left-radius: 15px; }
+td:last-child { border-bottom-right-radius: 15px; }
+
+tr td{
+	padding-top:15px;
+	padding-bottom:15px;
+	padding-right: 3px;
+}
+
 button{
-	width:100%;
 	border:none;
+	margin: 10px 15px 10px 15px;
 }
 
-input{
-	width:69%;
+.container{
+	margin: -60px auto 100px auto;
+	padding-top: 60px;
+	background-color: #F2F2F2;
+	width:420px;
+	min-width:30%;
+	min-height: 550px;
+	text-align: center;
+	line-height: 2em;
+	border-radius: 15px;
+	color:#7E8C8D;
+	font-size:15px;
+	overflow: auto;
+	padding-bottom:40px;
+	box-shadow: 20px 40px 80px gray
 }
 
-#adicionar{
+.header{
+
+	font-size: 20px;
+	line-height: 60px;
+	position:relative;
+	height:60px;
+	width:420px;
+	min-width:30%;
+	margin:90px auto auto auto;
+	background-color: #95A5A5;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	color:#F2F2F2;
+}
+
+.title{
+	margin-left: 50px;
+	text-align: left;
+	text-shadow: 3px 3px 5px gray;
+
+}
+
+
+
+
+.footer{
+	position:relative;
+	height:40px;
+	width:420px;
+	min-width:30%;
+	margin:-140px auto auto auto;
+	background-color: white;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+
+}
+
+.bottombutton{
+	margin:auto;
+	line-height: 40px;
+	text-align: center;
+	font-size: 25px;
+}
+
+.topbutton{
+	width:63px;
+	text-align: center;
+	background-color: #7E8C8D;
+	position:absolute;
+	top:0;
+	right:0;
+	border-bottom-left-radius: 15px;
+	border-top-right-radius: 15px;
+
+	margin:auto;
+	font-size: 25px;
+
+}
+
+
+.calendario{
+	padding-top: 10px;
+}
+
+/* unvisited link */
+a.botoesapp:link {
+    color: #F2F2F2;
+}
+/* visited link */
+a.botoesapp:visited {
+    color: #F2F2F2;
+}
+/* mouse over link */
+
+/* selected link */
+a.botoesapp:active {
+    color: #F2F2F2;
+}
+
+/* unvisited link */
+a.botoesappdark:link {
+    color: #7E8C8D;
+}
+/* visited link */
+a.botoesappdark:visited {
+    color: #7E8C8D;
+}
+/* mouse over link */
+a.botoesappdark:hover {
+    color: #7E8C8D;
+}
+/* selected link */
+a.botoesappdark:active {
+    color: #7E8C8D;
+}
+
+
+.botoesappdark{
+	margin:auto 10px auto 10px;
+}
+
+#controls{
 	display: inline-block;
-	min-width: 50px;
-	width:30%;
-	margin-bottom: 1em;
-	white-space: normal;
 }
-
-.btnnovoitem{
-	width:100%;
-	border:none;
-}
-
-.jumbotron{
-	background-image: url("http://akalifehacking.com/wp-content/uploads/2014/05/MindMappingBoard.jpg");
-	height: 200px;
-	background-size:100%;
-}
-
-td{
+/*td{
 	word-wrap:break-word;
+}*/
+
+
+.deleteicon{
+	color:#F2F2F2;
+	background-color: #BD2031;
+	width:63px;
+	font-size: 20px;
 }
 
-#deleteicon{
-	color:red;
-	width:10%;
+.deleteicon:hover{
+	color:#F2F2F2;
+	background-color: #7E8C8D;
 }
 
-#todo{
-	width:70%;
+#containerfiltro .mix{
+  display: none;
+}
+
+.heart{
+	color:#F38BA4;
+	font-size:60px;
+	margin:150px auto 0px auto;
 }
