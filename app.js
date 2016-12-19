@@ -8,44 +8,27 @@ var express = require("express"),
 	mongoose= require("mongoose"),
 	//other
 	bodyParser = require("body-parser"),
-	ejs = require("ejs"),
-	moment = require('moment'),
-	// user auth
-	User = require("./models/user"), 
-	passport = require("passport"),
-	LocalStrategy = require("passport-local"),
-	passportLocalMongoose = require("passport-local-mongoose");
+	ejs = require("ejs");
 
-
-//============================
-// CONFIG: user auth
-//============================
-	app.use(require("express-session")({
-		secret: "Todo app is my first app ever",
-		resave: false,
-		saveUninitialized:false
-	}));
-
-	app.use(passport.initialize());
-	app.use(passport.session());
-	passport.use(new LocalStrategy(User.authenticate()))
-	passport.serializeUser(User.serializeUser());
-	passport.deserializeUser(User.deserializeUser());
 //============================
 // CONFIG: DB 
 //============================
-mongoose.connect("mongodb://localhost/todos");
+mongoose.connect("mongodb://laurajbarros:voting-server@ds139278.mlab.com:39278/voting-server");
+// mongoose.connect("mongodb://localhost/vote");
 mongoose.Promise = global.Promise; 
 
-///// Gravar itens no BD
-var itemSchema = new mongoose.Schema({
-item: String,
-duedate: {type:Date, default: Date.now},
-priority: String,
-username: String
-})//	Isso aqui determina a estrutura dos dados que podem existir
+//============================
+// CONFIG: Vote
+//============================
+///// Gravar grade no BD
+var votingSchema = new mongoose.Schema({
+email: String,
+vote: String,
+date: String
+})
 
-var Item = mongoose.model("Item",itemSchema); 
+var Vote = mongoose.model("Vote",votingSchema);
+
 //============================
 // CONFIG: Express, ejs & Body Parser
 //============================
@@ -59,113 +42,33 @@ app.locals.moment = require('moment');
 // ROUTERS
 //============================
 
-app.get("/",isLoggedIn, function(req,res){
-	Item.find({"username":req.user.username},function(err,allitems){
+app.get("/", function(req,res){
+	Vote.find({},function(err,votes){
 		if(err){
 			console.log("deuruim /");
 		} else {
-		res.render("todos",{allitems:allitems, username:req.user.username});
+			res.render("todos",{votes:votes});
 		}
 	})
+})
 
-	});
-
-app.get("/calendar",isLoggedIn,function(req,res){
-	Item.find({"username":req.user.username},function(err,allitems2){
-		if(err){
-			console.log("deuruim calendar");
-		} else {
-		res.render("calendar",{allitems:allitems2,username:req.user.username});
-		console.log(allitems2);
-		}
-	})
-});
-
-
-app.get("/items",isLoggedIn,function(req,res){
-	res.render("items", {username:req.user.username});
-	});
-
-
-app.post("/additem",isLoggedIn,function(req,res){
-	var priorityadded = (req.body.priority);
-	var dateadded = (req.body.date3) ;
-    var itemadded = req.body.item;
-	var usernameadded = req.user.username;
-	var newItem = {item: itemadded, duedate:dateadded, priority:priorityadded, username: usernameadded}
-	Item.create(newItem, function(err,item){
+app.post("/vote",function(req,res){
+	console.log(req.body);
+ 	var voting = req.body;
+	Vote.create(voting, function(err,grade){
 		if(err){
 			console.log("deu ruim");
 		} else {
+			console.log("added to database")
 			res.redirect("/");
 		}
 	});
-	});
-
-app.post("/delete",isLoggedIn,function(req,res){
-	var itemtodelete = req.body.id;
-	console.log(itemtodelete);
-	Item.findByIdAndRemove(itemtodelete,function(err){
-		if(err){
-			console.log("deu ruim delete");
-		}
-	});
-	});
-
-
-//============================
-// Auth ROUTERS
-//============================
-
-app.get("/register",function(req,res){
-	res.render("register");
-})
-
-app.post("/register",function(req,res){
-	req.body.username;
-	req.body.password;
-	User.register(new User({username: req.body.username}),req.body.password,function(err,user){
-		if(err){
-			console.log(err);
-			return res.render("register");
-		}
-		passport.authenticate("local")(req,res,function(){
-			res.redirect("/");
-		})
-	})
-})
-//============================
-// Login ROUTERS
-//============================
-
-function isLoggedIn(req,res,next){
-	if(req.isAuthenticated()){
-		return next();
-	}
-	res.redirect("/login");
-}
-
-
-app.get("/login",function(req,res){
-	res.render("login");
-})
-
-app.post("/login", passport.authenticate("local",{
-		successRedirect:"/",
-		failureRedirect:"/login"
-}),	function(req,res){
-	}
-);
-
-app.get("/logout",function(req,res){
-	req.logout();
-	res.redirect("/");
 });
 
 //============================
 // Server listener
 //============================
 app.listen(3001, process.env.IP, function(){
-   console.log("ToDos tá no ar"); 
+   console.log("StudyPlan está no ar"); 
 });
 
