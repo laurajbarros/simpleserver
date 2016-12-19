@@ -23,17 +23,9 @@ mongoose.Promise = global.Promise;
 ///// Gravar grade no BD
 var votingSchema = new mongoose.Schema({
 name: String,
+date: String,
 email: String,
-vote1: String,
-vote2: String,
-vote3: String,
-vote4: String,
-vote5: String,
-vote6: String,
-vote7: String,
-vote8: String,
-vote9: String,
-vote10: String
+finalvote: String
 })
 
 var Vote = mongoose.model("Vote",votingSchema);
@@ -51,21 +43,58 @@ app.locals.moment = require('moment');
 // ROUTERS
 //============================
 
+//get
 app.get("/", function(req,res){
 	Vote.find({},function(err,votes){
 		if(err){
 			console.log("deuruim /");
 		} else {
+
 			res.render("todos",{votes:votes});
 		}
 	})
 })
 
+//delete all
+app.post("/deleteitall", function(req,res){
+	console.log("we got here")
+	Vote.remove({},function(err,votes){
+		if(err){
+			console.log("didnt delete");
+		} else {
+			res.redirect("/");
+		}
+	})
+})
+
+//vote
 app.post("/vote",function(req,res){
 	var voting = req.body;
+	voting.date = Date();
+	if(voting.vote1){
+		voting.finalvote = "vote1";
+	} else if(voting.vote2){
+		voting.finalvote = "vote2";
+	} else if(voting.vote3){
+		voting.finalvote = "vote3";
+	} else if(voting.vote4){
+		voting.finalvote = "vote4";
+	} else if(voting.vote5){
+		voting.finalvote = "vote5";
+	} else if(voting.vote6){
+		voting.finalvote = "vote6";
+	} else if(voting.vote7){
+		voting.finalvote = "vote7";
+	} else if(voting.vote8){
+		voting.finalvote = "vote8";
+	} else if(voting.vote9){
+		voting.finalvote = "vote9";
+	} else if(voting.vote10){
+		voting.finalvote = "vote10";
+	}
 	Vote.findOne({"email": req.body.email}, function(err, foundClient){
        if(err){
-           res.redirect("http://www.globo.com");
+           res.redirect("http://win.crispgolf.com/failedvote/");
        } else {
        		if(foundClient){
        			console.log("there is already a client");

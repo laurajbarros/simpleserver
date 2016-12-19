@@ -1,22 +1,42 @@
 <% include ./partials/header %>
-<div>
-	<div>
-		<h1>Votes</h1>
-		<p><%= votes%></p>
-
+	<div class="container">
+		<div class="page-header">
+		<button class="btn pull-right btn-danger" onclick="deleteAllRecords()" >Delete all records</button>
+			<h1>Voting results</h1>
+		</div>
+		
 	</div>
-	<form action="/vote" method="POST">
-		<label>Email</label>
-		<input name="email"/>
-		<label>Vote</label>
-		<input name="vote"/>
-		<label>Date</label>
-		<input name="date"/>
-		<button type="submit">Submit</button>
-	</form>
+	<div class="container">
+	<table class="table">
+		<thead>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Vote</th>
+			<th>Date</th>
+		</thead>
+		<tbody>
+			<% votes.forEach(function(x){ %>
+			<tr>
+				<td><%= x.name %> </td>
+				<td><%= x.email %> </td>
+				<td><%= x.finalvote %> </td>
+				<td><%= x.date %> </td>
+			</tr>
+			<% }) %>
+		</tbody>
+	</table>
+	</div>
+	<script type="text/javascript">
+	
+		function deleteAllRecords(){
+			var password = prompt("Please enter code to delete", "****");
+			if (password == "deleteitall"){
+				$.post("/deleteitall", function(answer){
+					console.log(answer);
+				})
+			}
+		}
+	</script>
 
-
-
-</div>
 <% include ./partials/footer %>
 
