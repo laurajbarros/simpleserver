@@ -62,16 +62,26 @@ app.get("/", function(req,res){
 })
 
 app.post("/vote",function(req,res){
-	console.log(req.body);
- 	var voting = req.body;
-	Vote.create(voting, function(err,grade){
-		if(err){
-			console.log("deu ruim");
-		} else {
-			console.log("added to database")
-			res.redirect("/");
-		}
-	});
+	var voting = req.body;
+	Vote.findOne({"email": req.body.email}, function(err, foundClient){
+       if(err){
+           res.redirect("http://www.globo.com");
+       } else {
+       		if(foundClient){
+       			console.log("there is already a client");
+				res.redirect("http://win.crispgolf.com/failedvote/");
+       		} else {
+       			Vote.create(voting, function(err,grade){
+					if(err){
+						console.log("deu ruim");
+					} else {
+						console.log("added to database")
+						res.redirect("http://win.crispgolf.com/successfulvote/");
+					}
+				});
+       		}
+       }
+   }) 
 });
 
 //============================
