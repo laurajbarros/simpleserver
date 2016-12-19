@@ -22,9 +22,18 @@ mongoose.Promise = global.Promise;
 //============================
 ///// Gravar grade no BD
 var votingSchema = new mongoose.Schema({
+name: String,
 email: String,
-vote: String,
-date: String
+vote1: String,
+vote2: String,
+vote3: String,
+vote4: String,
+vote5: String,
+vote6: String,
+vote7: String,
+vote8: String,
+vote9: String,
+vote10: String
 })
 
 var Vote = mongoose.model("Vote",votingSchema);
