@@ -68,7 +68,7 @@ app.post("/vote",function(req,res){
 //============================
 // Server listener
 //============================
-app.listen(3001, process.env.IP, function(){
+app.listen(process.env.PORT, process.env.IP, function(){
    console.log("StudyPlan está no ar"); 
 });
 
