@@ -1,8 +1,17 @@
 <% include ./partials/header %>
 	<div class="container">
 		<div class="page-header">
-		<button class="btn pull-right btn-danger" onclick="deleteAllRecords()" >Delete all records</button>
-			<h1>Voting results</h1>
+			<button class="btn pull-right btn-danger" onclick="deleteAllRecords()" >Delete all records</button>
+			<h1>Voting Results</h1>
+		</div>
+		<div id="result">
+
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="page-header">
+			<h1>All Votes</h1>
 		</div>
 		
 	</div>
@@ -27,7 +36,38 @@
 	</table>
 	</div>
 	<script type="text/javascript">
-	
+
+	var votes = <%- JSON.stringify(votes) %>;
+	var votestotal = [];
+	votes.forEach(function(x){
+		votestotal.push(x.finalvote);
+	})
+	votestotal.sort();
+	var resultarray = [];
+	var current = null;
+    var cnt = 0;
+    for (var i = 0; i < votestotal.length; i++) {
+        if (votestotal[i] != current) {
+            if (cnt > 0) {
+                resultarray.push(current + ' comes --> ' + cnt + ' times');
+            }
+            current = votestotal[i];
+            cnt = 1;
+        } else {
+            cnt++;
+        }
+    }
+    if (cnt > 0) {
+        resultarray.push(current + ' comes --> ' + cnt + ' times');
+    }
+    
+    for(i=0;i<resultarray.length;i++){
+	    var para = document.createElement("p");
+		var node = document.createTextNode(resultarray[i]);
+		para.appendChild(node);
+		var element = document.getElementById("result");
+		element.appendChild(para);
+	}
 		function deleteAllRecords(){
 			var password = prompt("Please enter code to delete", "****");
 			if (password == "deleteitall"){
